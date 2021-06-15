@@ -1,3 +1,8 @@
+:root {
+    --raised-box-shadow: 4px 4px 12px grey;
+    --sunken-box-shadow: inset 4px 4px 12px grey;
+}
+
 :host-context(.blue) {
     --color: blue;
 }

@@ -1,16 +1,21 @@
 @import url('../../../themes/theme.scss');
 
 .container {
-    .radio {
-        width: 20px;
-        height: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 28px;
+    input {
+        display: none;
     }
-}
-
-
-label {
-    color: var(--color);
+    .radio {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: gray;
+        margin-right: 6px;
+    }
+    label {
+        line-height: 1;
+    }
 }

@@ -23,6 +23,7 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit {
   @Output() blur = new EventEmitter();
   @Output() change = new EventEmitter();
   selectedValue: string;
+  active = false;
   propagateChange = (_: any) => {};
 
   constructor() { }
@@ -43,6 +44,7 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit {
   }
 
   onChange(event: Event) {
+    this.active = this.value === this.selectedValue;
     this.change.emit(this.selectedValue);
   }
 
