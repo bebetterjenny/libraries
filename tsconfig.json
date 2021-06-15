@@ -20,8 +20,9 @@
     ],
     "paths": {
       "moon": [
-        "dist/moon/moon",
-        "dist/moon"
+        // "dist/moon/moon",
+        // "dist/moon"
+        "projects/moon/src/public-api"
       ]
     }
   },

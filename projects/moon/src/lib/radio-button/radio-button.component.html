@@ -1,1 +1,8 @@
-<p>radio-button works!</p>
+<div class="container" (mouseenter)="onMouseEnter($event)" (mouseleave)="onMouseLeave($event)">
+    <input type="radio" [name]="name" [value]="value" [attr.disabled]="disabled || null" [id]="id"
+        [(ngModel)]="selectedValue" (change)="onChange($event)" (focus)="onFocus($event)" (blur)="onBlur($event)" />
+    <div class="radio">
+        <div class="radio-inner"></div>
+    </div>
+    <label [for]="id">{{ label }}</label>
+</div>
