@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -22,8 +22,8 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit {
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
   @Output() change = new EventEmitter();
+  @ViewChild('input') input: ElementRef;
   selectedValue: string;
-  active = false;
   propagateChange = (_: any) => {};
 
   constructor() { }
@@ -44,7 +44,6 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit {
   }
 
   onChange(event: Event) {
-    this.active = this.value === this.selectedValue;
     this.change.emit(this.selectedValue);
   }
 
@@ -63,4 +62,5 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit {
   onBlur(event: Event) {
     this.blur.emit(event);
   }
+
 }
