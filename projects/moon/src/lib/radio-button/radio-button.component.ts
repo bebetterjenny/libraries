@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'mn-radio',
@@ -14,25 +14,29 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class RadioButtonComponent implements ControlValueAccessor, OnInit {
-  @Input() name: string;
+  @Input() name: string = '';
   @Input() value: string;
   @Input() label: string;
   @Input() id: string;
   @Input() disabled = false;
-  @Output() focus = new EventEmitter();
-  @Output() blur = new EventEmitter();
-  @Output() change = new EventEmitter();
+  @Output() onFocus = new EventEmitter();
+  @Output() onBlur = new EventEmitter();
+  @Output() onClick = new EventEmitter();
   @ViewChild('input') input: ElementRef;
   selectedValue: string;
   propagateChange = (_: any) => {};
 
-  constructor() { }
+  constructor(
+    private renderer: Renderer2
+  ) { }
 
   ngOnInit(): void {
   }
 
   writeValue(value: string) {
-    if (value) this.selectedValue = value;
+    if (value) {
+      this.selectedValue = value;
+    }
   }
 
   registerOnChange(fn: (_: any) => {}) {
@@ -43,24 +47,25 @@ export class RadioButtonComponent implements ControlValueAccessor, OnInit {
 
   }
 
-  onChange(event: Event) {
-    this.change.emit(this.selectedValue);
+  change(event: Event) {
+    this.propagateChange(this.selectedValue);
+    this.onClick.emit(this.selectedValue);
   }
 
-  onMouseEnter(event: Event & { target: HTMLElement }) {
+  mouseEnter(event: Event & { target: HTMLElement }) {
     event.target.classList.add('hover');
   }
 
-  onMouseLeave(event: Event & { target: HTMLElement }) {
+  mouseLeave(event: Event & { target: HTMLElement }) {
     event.target.classList.remove('hover');
   }
 
-  onFocus(event: Event) {
-    this.focus.emit(event);
+  focus(event: Event) {
+    this.onFocus.emit(event);
   }
 
-  onBlur(event: Event) {
-    this.blur.emit(event);
+  blur(event: Event) {
+    this.onBlur.emit(event);
   }
 
 }

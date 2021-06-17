@@ -22,20 +22,17 @@ input {
     padding: 0 8px;
     margin: 8px 0;
     box-shadow: var(--raised-box-shadow);
-    cursor: pointer;
     transition: var(--transition);
     .radio {
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background-color: var(--grey-4);
+      background-color: var(--grey-5);
       margin-right: 6px;
       transition: var(--transition);
     }
     label {
       line-height: 1;
-      color: var(--theme-color);
-      cursor: pointer;
     }
   }
   &:hover ~ .container {
@@ -45,11 +42,19 @@ input {
     & ~ .container {
       box-shadow: var(--sunken-box-shadow);
       .radio {
-          background-color: var(--theme-color);
+        background-color: var(--theme-color);
       }
     }
     &:hover ~ .container {
       box-shadow: var(--hovering-sunken-box-shadow);
     }
+  }
+  &:disabled {
+    cursor: not-allowed;
+    & ~ .container {
+        .radio {
+          background-color: var(--grey-3);
+        }
+      }
   }
 }

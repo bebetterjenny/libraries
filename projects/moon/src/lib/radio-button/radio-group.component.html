@@ -1,0 +1,6 @@
+<div class="container">
+    <label>{{ label }}</label>
+    <div class="radios">
+        <ng-content select="mn-radio" (change)="onChange($event)"></ng-content>
+    </div>
+</div>

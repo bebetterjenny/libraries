@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-label',
+  selector: 'mn-label',
   templateUrl: './label.component.html',
   styleUrls: ['./label.component.scss']
 })
